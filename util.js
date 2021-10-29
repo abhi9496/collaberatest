@@ -12,11 +12,10 @@ class util{
         var message = '===> ' + label + ' is not displayed'
         await browser.waitUntil(async () => await elem.isClickable() === true,
             {
-                timeout: 60000,
+                timeout: 120000,
                 timeoutMsg: message
             });
         await elem.setValue(value);
-        //await this.waitForLoaderToInvisible();
     }
     async waitForElement(elem, label) {
         var message = '===> ' + label + ' is not displayed'
@@ -27,8 +26,9 @@ class util{
             });
     }
     async doSelectFromDropDown(elem, valueToSelect, label) {
+        console.log("In the drpdwon method")
         var message = '===> ' + label + ' is not displayed'
-        if (label =="day")
+        if (label =="Date")
         var optionToSelect = $('.//option[@value="'+valueToSelect+'" and contains(text(),"'+valueToSelect+'")]');
         else 
         var optionToSelect = $('.//option[contains(text(),"'+valueToSelect+'")]');
@@ -41,8 +41,6 @@ class util{
         await elem.click();
         await (await optionToSelect).click();
 
-    }
-
-    
+    } 
 }
-module.export = new util();
+module.exports = new util();

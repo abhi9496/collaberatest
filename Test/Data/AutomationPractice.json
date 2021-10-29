@@ -1,6 +1,6 @@
 {
     "url":"http://automationpractice.com/",
-    "Email":"nommulaabhilashreddy9496@gmail.com",
+    "Email":"nommulaabhilashreddy@gmail.com",
     "personalDetails":{
         "firstName":"Akhilesh",
         "lastName":"Rao",
@@ -23,7 +23,9 @@
         "homePhone":"040-225678",
         "mobilePhone":"9445679800",
         "alias":"HimayathNagar"
-
-
+    },
+    "logInData":{
+        "email":"nommulaabhilashreddy@gmail.com",
+        "passwrd":"Rao1234"
     }
 }
