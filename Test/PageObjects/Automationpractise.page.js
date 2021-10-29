@@ -100,7 +100,6 @@ class Automationpage{
         await util.waitForElement(await this.addToCart,'label');
         await (await this.addToCart).click();
         await util.waitForElement(await this.proceedToCheckout,'pcheckout');
-        await (await this.proceedToCheckout).click()
     }
     async prcdToChckout(){
         await (this.proceedToCheckout).scrollIntoView();
