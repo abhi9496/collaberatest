@@ -1,3 +1,4 @@
+const { doSetValue } = require('../../util')
 const util = require('../../util')
 class Automationpage{
     get tablogin(){return $('//a[@class="login"]')}
@@ -32,6 +33,13 @@ class Automationpage{
     get myOrders(){return $('//i[@class="icon-building"]/span')}
     get signout(){ return $("//a[@class='logout']")}
     get btnSignIn(){ return $('#SubmitLogin')}
+    get searchBar(){return $("#search_query_top")}
+    get searchButton(){return $(".btn.btn-default.button-search")}
+    get addToCart(){return $("//a[@title='Add to cart']")}
+    get inStock(){return $("//span[@class='available-now']")}
+    get proceedToCheckout(){return $("//a[@title='Proceed to checkout']")}
+    get checkBox(){return $("#cgv")}
+    get productText(){return $("//p[@class='product-name']/a")}
 
     async register(email){
         await util.doClick(await this.signin,"createSignin")
@@ -80,6 +88,21 @@ class Automationpage{
         await util.doSetValue(await this.tabemail,loginData.email,'email')
         await util.doSetValue(await this.tabpasswd,loginData.passwrd,'Password')
         await util.doClick(await this.btnSignIn,'sign in')
+    }
+    async addProductToCart(productName){
+        await util.doClick(await this.searchBar,'searchBar')
+        await util.doSetValue(await this.searchBar,productName,'searchBar')
+        await util.doClick(await this.searchButton,'searchButton')
+        await (await this.inStock).moveTo()
+        await (await this.addToCart).click()
+        await (await this.proceedToCheckout).click()
+    }
+    async prcdToChckout(){
+        await (await this.proceedToCheckout).click()
+        await (await this.proceedToCheckout).click()
+        await (await this.checkBox).click()
+        await (await this.proceedToCheckout).click()
+        
     }
 }
 module.exports = new Automationpage();

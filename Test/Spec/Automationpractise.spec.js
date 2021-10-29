@@ -22,6 +22,11 @@ describe("open Automation page and Register",()=>{
     });
 
     it('Add product to the cart', async()=>{
-        
+        await Automationpage.addProductToCart(AutomationData.productName);
+    })
+
+    it("Proceed to checkout",async()=>{
+        await Automationpage.prcdToChckout()
+        await expect(await Automationpage.productText).to.equal(AutomationData.productName)
     })
 })
