@@ -6,7 +6,7 @@ describe("open Automation page and Register",()=>{
     it("open Automation website and Register",async()=>{
         await browser.url(AutomationData.url);
         await browser.maximizeWindow();
-        // await util.waitForElement(await Automationpage.cart,"cart");
+        await util.waitForElement(await Automationpage.cart,"cart");
         await Automationpage.register(AutomationData.Email);
         await Automationpage.personalInformation(AutomationData.personalDetails);
         await browser.pause(30000);
@@ -16,17 +16,17 @@ describe("open Automation page and Register",()=>{
     });
 
     it('Logout and Login Again',async()=>{
-        await (await this.signout).click();
+        await (await Automationpage.signout).click();
         await util.waitForElement(await Automationpage.cart,"cart");
         await Automationpage.logIn(AutomationData.logInData);
     });
 
     it('Add product to the cart', async()=>{
         await Automationpage.addProductToCart(AutomationData.productName);
-    })
+    });
 
-    it("Proceed to checkout",async()=>{
-        await Automationpage.prcdToChckout()
+    it.skip("Proceed to checkout",async()=>{
+        await Automationpage.prcdToChckout();
         await expect(await Automationpage.productText).to.equal(AutomationData.productName)
-    })
+    });
 })

@@ -35,11 +35,12 @@ class Automationpage{
     get btnSignIn(){ return $('#SubmitLogin')}
     get searchBar(){return $("#search_query_top")}
     get searchButton(){return $(".btn.btn-default.button-search")}
-    get addToCart(){return $("//a[@title='Add to cart']")}
+    get addToCart(){return $("//p[@id='add_to_cart']/button/span")}
     get inStock(){return $("//span[@class='available-now']")}
     get proceedToCheckout(){return $("//a[@title='Proceed to checkout']")}
     get checkBox(){return $("#cgv")}
     get productText(){return $("//p[@class='product-name']/a")}
+    get productImage(){return $("//a[@class='product_img_link']")}
 
     async register(email){
         await util.doClick(await this.signin,"createSignin")
@@ -51,7 +52,7 @@ class Automationpage{
         await (await $('.//option[@value="'+value+'" and contains(text(),"'+value+'")]')).click();
         }
         else{
-            $('.//option[contains(text(),"'+value+'")]');
+           await (await $('.//option[contains(text(),"'+value+'")]')).click();
         }
     }
 
@@ -62,8 +63,10 @@ class Automationpage{
         await util.doSetValue(await this.passwd,personalData.password,"Password")
         await (await this.day).click();
         await this.optionToSelect('day',personalData.dob.day)
+        await browser.pause(2000);
         await (await this.month).click();
         await this.optionToSelect('month',personalData.dob.month)
+        await browser.pause(2000);
         await (await this.year).click();
         await this.optionToSelect('year',personalData.dob.year)
         await util.doSetValue(await this.firstN,personalData.firstN,"FirstN")
@@ -92,17 +95,24 @@ class Automationpage{
     async addProductToCart(productName){
         await util.doClick(await this.searchBar,'searchBar')
         await util.doSetValue(await this.searchBar,productName,'searchBar')
-        await util.doClick(await this.searchButton,'searchButton')
-        await (await this.inStock).moveTo()
-        await (await this.addToCart).click()
+        await (await this.searchButton).click();
+        await (await this.productImage).click();
+        await util.waitForElement(await this.addToCart,'label');
+        await (await this.addToCart).click();
+        await util.waitForElement(await this.proceedToCheckout,'pcheckout');
         await (await this.proceedToCheckout).click()
     }
     async prcdToChckout(){
+        await (this.proceedToCheckout).scrollIntoView();
+        await util.waitForElement(await this.proceedToCheckout,'pcheckout');
         await (await this.proceedToCheckout).click()
+        await (this.proceedToCheckout).scrollIntoView();
+        await util.waitForElement(await this.proceedToCheckout,'pcheckout');
+        await (await this.proceedToCheckout).click();
+        await (this.proceedToCheckout).scrollIntoView();
+        await util.waitForElement(await this.proceedToCheckout,'pcheckout');
+        await (await this.checkBox).click();
         await (await this.proceedToCheckout).click()
-        await (await this.checkBox).click()
-        await (await this.proceedToCheckout).click()
-        
     }
 }
 module.exports = new Automationpage();

@@ -1,6 +1,6 @@
 {
     "url":"http://automationpractice.com/",
-    "Email":"nommulaabhilashreddy@gmail.com",
+    "Email":"nommulaabhilashr@gmail.com",
     "personalDetails":{
         "firstName":"Akhilesh",
         "lastName":"Rao",
@@ -16,8 +16,8 @@
         "address":"Madhapur",
         "addressLine":"Raghuveera Building",
         "city":"Hyderbad",
-        "state":"Telangana",
-        "zipCode":"500082",
+        "state":"Alabama",
+        "zipCode":"50082",
         "country":"India",
         "additionalInfo":"Lane No.3",
         "homePhone":"040-225678",
@@ -25,7 +25,7 @@
         "alias":"HimayathNagar"
     },
     "logInData":{
-        "email":"nommulaabhilashreddy@gmail.com",
+        "email":"nommulaabhilashr@gmail.com",
         "passwrd":"Rao1234"
     },
     "productName":"Faded Short Sleeve T-shirts"
